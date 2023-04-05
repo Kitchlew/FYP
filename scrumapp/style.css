@@ -1,0 +1,17 @@
+#flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#info {
+  background-color: blue;
+  color: black;
+	position: absolute;
+  size: 100%;
+	top: 10px;
+	z-index: 10;
+  text-align: center;
+
+}
