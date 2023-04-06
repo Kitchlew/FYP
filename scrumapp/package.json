@@ -1,5 +1,5 @@
 {
-  "name": "zarrar-threejs",
+  "name": "project-management-tool",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,11 @@
     "vite": "^3.0.0"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "react-copy-to-clipboard": "^5.1.0",
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^4.6.1",
     "three": "^0.142.0"
   }
 }

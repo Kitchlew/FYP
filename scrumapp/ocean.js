@@ -45,7 +45,7 @@ function init() {
     
 	const loader = new FontLoader();
 	loader.load('img/Headliner No. 45_Regular.json', function (font) {
-        const geometry = new TextGeometry('ZARRAR', {
+        const geometry = new TextGeometry('SCRUM APP', {
             font: font,
             size: 90,
             height: 3,
@@ -64,7 +64,7 @@ function init() {
          textMesh1 = new THREE.Mesh(geometry, materials);
         textMesh1.castShadow = true
         
-        textMesh1.position.x-=130
+        textMesh1.position.x = -150;
 		scene.fog = new THREE.FogExp2( 0x5e0000, 0.0005 );
         scene.add(textMesh1)
 		
