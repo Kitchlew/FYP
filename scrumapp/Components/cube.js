@@ -51,7 +51,7 @@ function createText(){
 
 					const text = new Mesh( geometry);
 					text.position.z = - 150;
-					return( text );
+					//return( text );
 
     } );
     
