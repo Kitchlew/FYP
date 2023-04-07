@@ -66,9 +66,10 @@ function init() {
          textMesh1 = new THREE.Mesh(geometry, materials);
         textMesh1.castShadow = true
         
-		//textMesh1.geometry.computeBoundingBox();
-		//textMesh1.geometry.boundingBox.getCenter(center);
+
 		textMesh1.position.x-=200;
+
+
 		
         scene.add(textMesh1)
 		
@@ -86,7 +87,9 @@ function init() {
 
 }
 function playScreen(){
+
 	scene.remove(textMesh1);
+
     textMesh1.geometry.dispose();
 	screen = createScreen();
 	scene.add( screen );
@@ -128,6 +131,7 @@ function render() {
 	
 	
 	if (x===1){
+
 	
 		camera.position.x += ( mouse.x - camera.position.x ) ;
 		camera.position.y += ( - mouse.y - camera.position.y ) ;
@@ -136,11 +140,9 @@ function render() {
 		
 		
 		
-	
-	
+
 	
 	camera.lookAt( center );
-	
 	
 
 
