@@ -29,7 +29,6 @@ function init() {
 	
 	scene = createScene();
 	camera = createCamera();
-	water = createWater();
 	
 	
 	let light = createLights();
@@ -65,7 +64,7 @@ function init() {
         textMesh1.castShadow = true
         
         textMesh1.position.x = -150;
-		scene.fog = new THREE.FogExp2( 0x5e0000, 0.0005 );
+		
         scene.add(textMesh1)
 		
     })
@@ -82,11 +81,17 @@ function init() {
 
 }
 function playScreen(){
+	
+	
+	
+	scene.remove(textMesh1);
+	water = createWater();
 	screen = createScreen();
+	scene.fog = new THREE.FogExp2( 0x5e0000, 0.0005 );
 	scene.add( water,screen );
 	scene.background = new THREE.Color( 0x5e0000 );
 	video.play();
-	scene.remove(textMesh1);
+	
     textMesh1.geometry.dispose();
 	x=1;
 	
@@ -124,7 +129,7 @@ function render() {
 	if (x===1){
 	camera.position.x += ( mouse.x - camera.position.x ) ;
 	camera.position.y += ( - mouse.y - camera.position.y ) ;
-	
+	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 	}
 	else{textMesh1.scale.z =( Math.cos(frame)/3  );
 	
@@ -132,7 +137,7 @@ function render() {
 	camera.lookAt( center );
 	
 	
-	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+	
 
 	renderer.render( scene, camera );
 
