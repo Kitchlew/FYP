@@ -68,8 +68,8 @@ function init() {
         
 
 		textMesh1.position.x-=200;
-x
-q
+
+
 		
         scene.add(textMesh1)
 		
