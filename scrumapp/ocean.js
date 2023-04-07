@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-
+import React from 'react';
+import { ReactDOM } from 'react';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import {GLTFLoader}from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createRenderer } from './Components/Systems/renderer.js';
@@ -20,7 +21,7 @@ let material;
 let mouse, center;
 init();
 animate();
-
+ReactDOM.render(document.getElementById( 'container_1' ));
 function init() {
 
 	container = document.getElementById( 'container_1' );
@@ -29,6 +30,7 @@ function init() {
 	
 	scene = createScene();
 	camera = createCamera();
+
 	
 	
 	let light = createLights();
@@ -40,30 +42,34 @@ function init() {
 	mouse = new THREE.Vector3( 0, 0, 1 );
 	center = new THREE.Vector3();
 	center.z = -1000;
-	scene.background = new THREE.Color( 0x00000 );
+	scene.background = new THREE.Color( 'white' );
     
 	const loader = new FontLoader();
 	loader.load('img/Headliner No. 45_Regular.json', function (font) {
         const geometry = new TextGeometry('SCRUM APP', {
             font: font,
-            size: 90,
-            height: 3,
+          
+            width: 100, 
+			
             curveSegments: 10,
             bevelEnabled: true,
             bevelOffset: -.2,
             bevelSegments: 2,
             bevelSize: .2,
-            bevelThickness: 8,
+            bevelThickness: 4,
 			fog:true
         });
         const materials = [
-            new THREE.MeshBasicMaterial({ color:"#5e0000" }), // front
-            new THREE.MeshBasicMaterial({ color: '#fc1c3d' }) // side
+            new THREE.MeshBasicMaterial({ color:"#253862" }), // front
+            new THREE.MeshBasicMaterial({ color: '#D0CECE' }) // side
         ];
          textMesh1 = new THREE.Mesh(geometry, materials);
         textMesh1.castShadow = true
         
-        textMesh1.position.x = -150;
+
+		textMesh1.position.x-=200;
+
+
 		
         scene.add(textMesh1)
 		
@@ -81,18 +87,15 @@ function init() {
 
 }
 function playScreen(){
-	
-	
-	
+
 	scene.remove(textMesh1);
-	water = createWater();
-	screen = createScreen();
-	scene.fog = new THREE.FogExp2( 0x5e0000, 0.0005 );
-	scene.add( water,screen );
-	scene.background = new THREE.Color( 0x5e0000 );
-	video.play();
-	
+
     textMesh1.geometry.dispose();
+	screen = createScreen();
+	scene.add( screen );
+	scene.background = new THREE.Color( 'white' );
+	
+	
 	x=1;
 	
     
@@ -126,18 +129,22 @@ function render() {
 	const time = performance.now() *8000;
 
 	
-	if (x===1){
-	camera.position.x += ( mouse.x - camera.position.x ) ;
-	camera.position.y += ( - mouse.y - camera.position.y ) ;
-	water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
-	}
-	else{textMesh1.scale.z =( Math.cos(frame)/3  );
 	
-    frame += 0.5;}
+	if (x===1){
+
+	
+		camera.position.x += ( mouse.x - camera.position.x ) ;
+		camera.position.y += ( - mouse.y - camera.position.y ) ;
+		
+		}
+		
+		
+		
+
+	
 	camera.lookAt( center );
 	
-	
-	
+
 
 	renderer.render( scene, camera );
 

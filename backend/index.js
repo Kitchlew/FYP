@@ -13,14 +13,25 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 }); 
 io.on('connection', (socket) => {
+    socket.emit('me', socket.id);
     console.log('a user connected');
     socket.on('disconnect', () => {
+        socket.broadcast.emit('callEnded');
         console.log('user disconnected');
     }); 
     socket.on('chat message', (msg) => {
         console.log('message: ' + msg);
         io.emit('chat message', msg);
     });
+    socket.on('callUser', ({ userToCall, signalData, from, name }) => {
+        io.to(userToCall).emit('callUser', { signal: signalData, from, name });
+    }
+    );
+    socket.on('answerCall', (data) => {
+        io.to(data.to).emit('callAccepted', data.signal);
+    }
+    );
+    
 });
 
 server.listen(PORT, () => {
